@@ -1,27 +1,42 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Form Example</title>
+    <title>Triangle Form</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function determineTriangle() {
+            var data = {
+                seiteA: $("#seiteA").val(),
+                seiteB: $("#seiteB").val(),
+                seiteC: $("#seiteC").val()
+            };
+            $.ajax({
+                type: "POST",
+                url: "/determine",
+                contentType: "application/json",
+                data: JSON.stringify(data),
+                success: function(response) {
+                    $("#triangleType").text(response);
+                }
+            });
+        }
+    </script>
 </head>
 <body>
-<h1>Rechtwinkeliger Dreiecks Rechner</h1>
-
-<h1 th:text="${msg}"></h1>
-<form method="post" th:action="@{/res}" th:object="${data}">
+<h1>Triangle Form</h1>
+<form method="post" th:action="@{/analyze}" th:object="${dreieckForm}">
     <label>Seite A:</label>
-    <input type="text" th:field="*{feld}" /><br/>
+    <input type="text" th:field="*{seiteA}" id="seiteA"/><br/>
 
     <label>Seite B:</label>
-    <input type="text" th:field="*{feld2}" /><br/>
+    <input type="text" th:field="*{seiteB}" id="seiteB"/><br/>
 
     <label>Seite C:</label>
-    <input type="text" th:field="*{feld3}" /><br/>
-<br/>
-    <button type="submit">OK</button>
+    <input type="text" th:field="*{seiteC}" id="seiteC" oninput="determineTriangle()" /><br/>
+    <br/>
+    <button type="submit">Berechnen</button>
 </form>
 <br/>
-<h0 th:text="${msg1}"></h0><br/>
-<h0 th:text="${msg2}"></h0><br/>
-<h0 th:text="${msg3}"></h0><br/>
+<h2 id="triangleType"></h2>
 </body>
 </html>

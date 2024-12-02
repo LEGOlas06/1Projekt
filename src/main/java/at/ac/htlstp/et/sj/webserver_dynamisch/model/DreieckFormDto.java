@@ -9,7 +9,8 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-
-public class IndexFormDto3 {
-    private String feld3="xx";
+public class DreieckFormDto {
+    private double seiteA;
+    private double seiteB;
+    private double seiteC;
 }
