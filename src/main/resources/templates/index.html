@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Triangle Form</title>
+    <title>Dreiecksberechnung</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        function determineTriangle() {
+        function erkennungDreieck() {
             var data = {
                 seiteA: $("#seiteA").val(),
                 seiteB: $("#seiteB").val(),
@@ -23,7 +23,7 @@
     </script>
 </head>
 <body>
-<h1>Triangle Form</h1>
+<h1>Dreiecksberechnung</h1>
 <form method="post" th:action="@{/analyze}" th:object="${dreieckForm}">
     <label>Seite A:</label>
     <input type="text" th:field="*{seiteA}" id="seiteA"/><br/>
@@ -32,7 +32,7 @@
     <input type="text" th:field="*{seiteB}" id="seiteB"/><br/>
 
     <label>Seite C:</label>
-    <input type="text" th:field="*{seiteC}" id="seiteC" oninput="determineTriangle()" /><br/>
+    <input type="text" th:field="*{seiteC}" id="seiteC" oninput="erkennungDreieck()" /><br/>
     <br/>
     <button type="submit">Berechnen</button>
 </form>
